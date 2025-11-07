@@ -96,7 +96,7 @@ class AStar(object):
         # HINT 3: You can use Python's min() function with a key=... argument 
         #         to find the node with the smallest estimated cost.
         # Example: min(collection, key=lambda node: ...)
-        return min(self.open_set, key=lambda x: self.est_total_cost)
+        return min(self.open_set, key=lambda x: self.est_total_cost[x])
 
 
     def reconstruct_path(self):
@@ -293,6 +293,8 @@ class Navigator(BaseNavigator):
         # Execute A* search and handle failure
         if not astar.solve() or len(astar.path) < 4:
             self.get_logger().info("No path found! (This is normal, try re-running the block above)")
+            self.plan = None
+            self.isPlanned = False
             return None
         
         self.get_logger().info("ASTAR Done")
