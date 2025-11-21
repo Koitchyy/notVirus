@@ -96,7 +96,7 @@ class AStar(object):
         # HINT 3: You can use Python's min() function with a key=... argument 
         #         to find the node with the smallest estimated cost.
         # Example: min(collection, key=lambda node: ...)
-        return min(self.open_set, key=lambda x: self.est_total_cost)
+        return min(self.open_set, key=lambda x: self.est_total_cost[x])
 
 
     def reconstruct_path(self):
